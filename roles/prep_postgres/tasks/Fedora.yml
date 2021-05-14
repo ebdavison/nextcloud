@@ -1,9 +1,14 @@
 ---
 # Fedora related OS tasks
 
+- name: add postgres gpg key
+  rpm_key:
+    key: https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG
+    state: present
+
 - name: add postgres repo
   yum:
-    name: https://download.postgresql.org/pub/repos/yum/{{ postgresql_version }}/fedora/fedora-{{ ansible_distribution_major_version|int }}-x86_64/pgdg-fedora-repo-latest.noarch.rpm
+    name: https://download.postgresql.org/pub/repos/yum/reporpms/F-{{ ansible_distribution_major_version|int }}-x86_64/pgdg-fedora-repo-latest.noarch.rpm
     state: present
 
 - name: install postgres server
